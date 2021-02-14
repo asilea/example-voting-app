@@ -36,9 +36,9 @@ pipeline {
             steps {
                 echo 'Packaging worker app with docker'
 		script{
-		docker.withRegistry('https://index.docker.io/v1', 'dockerlogin' {
+		docker.withRegistry('https://index.docker.io/v1', 'dockerlogin' (
 			def workerImage = docker.build("avsdom/worker:v${env.BUILD_ID}", "./worker"
-			}
+			)
 			workerImage.push()
 			workerImage.push("${env.BRANCH_NAME}")
 		}
